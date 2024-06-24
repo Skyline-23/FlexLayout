@@ -26,7 +26,7 @@ import FlexLayoutYogaKit
     label.flex.margin(10)
  ```
  */
-public final class Flex {
+public final class Flex: NSObject {
     
     //
     // MARK: Properties
@@ -37,6 +37,10 @@ public final class Flex {
     */
     public private(set) weak var view: UIView?
     private let yoga: YGLayout
+    
+    @objc dynamic public var dynamicView: UIView? {
+        return view
+    }
     
     /**
      Item natural size, considering only properties of the view itself. Independent of the item frame.

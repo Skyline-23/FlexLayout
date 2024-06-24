@@ -26,6 +26,16 @@ extension UIView {
             return flex
         }
     }
+    
+    @objc dynamic public var dynamicFlex: Flex {
+        if let flex = objc_getAssociatedObject(self, &flexLayoutAssociatedObjectHandle) as? Flex {
+            return flex
+        } else {
+            let flex = Flex(view: self)
+            objc_setAssociatedObject(self, &flexLayoutAssociatedObjectHandle, flex, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return flex
+        }
+    }
 
     public var isFlexEnabled: Bool {
         (objc_getAssociatedObject(self, &flexLayoutAssociatedObjectHandle) as? Flex) != nil
